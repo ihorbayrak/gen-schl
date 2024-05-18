@@ -131,4 +131,6 @@ return [
         ],
     ],
 
+    'scheduling' => env("SCHEDULING_TIME", '12:00'),
+
 ];
