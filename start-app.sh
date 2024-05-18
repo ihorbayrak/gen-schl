@@ -1,5 +1,3 @@
-cp env.example env.example.example
-
 # just to be sure that no traces left
 docker-compose down -v
 
