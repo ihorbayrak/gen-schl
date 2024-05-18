@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function (SubscriptionService $subscriptionService) {
             $subscriptionService->sendNewsletter();
-        })->daily();
+        })->dailyAt(config('mail.scheduling'));
     }
 
     /**
