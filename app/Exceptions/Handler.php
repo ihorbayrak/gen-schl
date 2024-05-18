@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use App\Services\ApiService\Exceptions\ApiConnectionException;
+use App\Services\ApiService\Exceptions\ApiRequestException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -26,5 +29,18 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $e)
+    {
+        if ($request->wantsJson() || $request->is('api/*')) {
+            if ($e instanceof ApiConnectionException || $e instanceof ApiRequestException) {
+                return response()->json([
+                    'description' => 'Invalid status value'
+                ], Response::HTTP_BAD_REQUEST);
+            }
+        }
+
+        return parent::render($request, $e);
     }
 }
