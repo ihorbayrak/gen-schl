@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Cache;
 
 class RateService
 {
-    private const CACHE_KEY = 'rate';
-    private const CACHE_TTL = 60; // 1 minute
+    public const CACHE_KEY = 'rate';
+    public const CACHE_TTL = 60; // 1 minute
 
     public function __construct(private readonly RateProviderInterface $rateProvider)
     {

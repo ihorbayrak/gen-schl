@@ -15,7 +15,7 @@ class ExchangeRateEmail extends Mailable implements ShouldQueue
     /**
      * Create a new message instance.
      */
-    public function __construct(private float $rate)
+    public function __construct(public float $rate)
     {
         //
     }
